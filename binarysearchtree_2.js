@@ -32,47 +32,46 @@ function insert(root,key){
     return root;
 }
 
+
 function deleteNode(root,key){
-    if (root==null) return  root;
-    if (root.data>key){
-        root.left = deleteNode(root.left,key);
-    } else if (root.data<key){
-        root.right = deleteNode(root.right,key);
+    if (root==null) return root; 
+    if (root.data<key){
+        root.right = deleteNode(root.right, key ); 
+        return root; 
+    }else if(root.data>key){
+        root.left = deleteNode(root.left, key);
         return root; 
     }
 
-    //if children is empty; 
-    if (root.left ==null){
-        let temp = root.right; 
-        delete root ; 
-        return temp ; 
-    }else if (root.right ===null){
-        let temp = root.left; 
-        delete root ; 
+    //if both children dont exist
+    if(root.left===null){
+        let temp = root.right; //null; 
+        delete root; 
+        return temp; //null;
+    }else if(root.right===null){
+        let temp = root.left; //null;  
+        delete root; 
         return temp ; 
     }
-    //if both children exist
-    else{
-        let succparent = root; 
-        let succ = root.right; 
+    //if both children exist; 
+     else{
+        if (root===null) return root;
+        let succParent=  root; 
+        console.log(succParent.data + " : ROOT ");
+        let succ = succParent.right ;
         while (succ.left!==null){
-            succparent = succ; 
+            succParent = succ; 
             succ= succ.left; 
         }
-
-        if (succparent!==root){
-            succparent.left = succ.right; 
+        if (succParent!==root){
+            succParent.left =succ.right; 
         }else{
-            succparent.right = succ.right; 
+            succParent.right = succ.right;
         }
-        //copy succ data to root; 
-        root.data = succ.key; 
-
-        delete succ; 
-        return root; 
-    }
-
-}
+        root.data = succ.data;
+        return root ;
+     }
+ }
 
 
 
@@ -90,7 +89,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   };
 
 
-  let arr = [1,2,3,4,5,6,7];
+  let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
   root = buildTree(arr,0,arr.length-1);
-  let final  =deleteNode(root,7);
+  let final  =deleteNode(root,6);
   prettyPrint(final);
