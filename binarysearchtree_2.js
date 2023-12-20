@@ -10,7 +10,7 @@ class Node {
 let root = null;
 function buildTree(arr,start,end){
     if (start> end) return null;
-    let mid = parseInt(start+end)/2;
+    let mid = Math.round((start+end)/2);
     let node = new Node(arr[mid]);
     node.left = buildTree(arr,start,mid-1);
     node.right = buildTree(arr,mid+1,end);
@@ -74,6 +74,21 @@ function deleteNode(root,key){
  }
 
 
+function height(root){
+    if (root ==null){
+        return root; 
+    }else{
+        let lheight = height(root.left);
+        let rheight = height(root.right);
+        
+        if (lheight>rheight){
+            return (lheight+1);
+        }else{
+            return (rheight+1);
+        }
+    }
+}
+
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node === null) {
@@ -89,7 +104,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   };
 
 
-  let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
   root = buildTree(arr,0,arr.length-1);
   let final  =deleteNode(root,6);
-  prettyPrint(final);
+    prettyPrint(final);
+   console.log("height: "+ height(final));
