@@ -73,6 +73,32 @@ function deleteNode(root,key){
      }
  }
 
+function find(key,root){
+    if(root ==null) return null;
+    if (root.data !==key){
+
+        if (key<root.data){
+            find(key,root.left);
+        }else find (key,root.right);
+    }
+    return root; 
+}
+
+function levelOrder(root,arr=[],queue=[]){
+    if (root===null) return root;
+    arr.push(root.data);
+    queue.push(root.left);
+    queue.push(root.right);
+
+    while(queue.length){
+        const level = queue[0];
+        queue.unshift();
+        levelOrder(level,arr,queue);
+    }
+
+    return arr; 
+
+}
 
 function height(root){
     if (root ==null){
@@ -107,5 +133,10 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
   root = buildTree(arr,0,arr.length-1);
   let final  =deleteNode(root,6);
+<<<<<<< HEAD
+  prettyPrint(final);
+  console.log(levelOrder(final));
+=======
     prettyPrint(final);
    console.log("height: "+ height(final));
+>>>>>>> 1b56d6b678cfc188aa13e5845aab8b42ec2efaf7
