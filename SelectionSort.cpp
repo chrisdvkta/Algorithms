@@ -3,7 +3,7 @@
 using namespace std;
 
 int* selectionSort(int arr[],int arrayLen){
-    for (int i = 0 ; i <arrayLen; i++){
+    for (int i = 0 ; i <arrayLen-1; i++){
     int lowestIndex= i; 
     for (int j = i+1; j<arrayLen;j++){
         if (arr[j]<arr[lowestIndex]){
@@ -29,7 +29,7 @@ for (int i = 0 ; i<arrayLen;i++){
 }
 int* add = selectionSort(arr, arrayLen);
 cout<<endl<<"SORTED ARRAY through bubble sort o(n^2) : "<<endl;
-for (int i = 0 ; i<5;i++){
+for (int i = 0 ; i<arrayLen;i++){
     cout<<*(add+i)<<" ";
 }
 }
