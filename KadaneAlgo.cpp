@@ -10,7 +10,7 @@ int main()
     {
         currSum += arr[i];
         maxSum = max(currSum, maxSum);
-        if (currSum < 0)
+        if (currSum < 0) // dont after maxSum comparison for all -ve elements edge case.
         {
             currSum = 0;
         }
